@@ -9,7 +9,15 @@ export default function Main() {
   return (
     <View style={styles.container}>
       <StatusBar style='auto' />
-      <Text>{translatedText.heading}</Text>
+      <View style={styles.header}>
+        <Text>{translatedText.heading}</Text>
+      </View>
+      <View style={styles.main}>
+        <Text>center</Text>
+      </View>
+      <View style={styles.action}>
+        <Text>Actions</Text>
+      </View>
     </View>
   )
 }
@@ -20,5 +28,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  header: {
+    flex: 4,
+    alignSelf: 'stretch',
+    backgroundColor: 'purple',
+    justifyContent: 'flex-end',
+  },
+  main: { flex: 4 },
+  action: {
+    flex: 2,
   },
 })
