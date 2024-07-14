@@ -12,17 +12,10 @@ export default function Onboarding() {
   const translatedText = useTranslation(SCREEN_LIST.ONBOARDING)
 
   const header = (
-    <LinearGradient
-      colors={['#5c00d2', '#cd00ea']}
-      start={[0, 0]}
-      end={[0, 1]}
-      style={styles.header}
-    >
-      <View>
-        <Text style={styles.heading}>{translatedText.heading}</Text>
-        <Text style={styles.subHeading}>{translatedText.subHeading}</Text>
-      </View>
-    </LinearGradient>
+    <View>
+      <Text style={styles.heading}>{translatedText.heading}</Text>
+      <Text style={styles.subHeading}>{translatedText.subHeading}</Text>
+    </View>
   )
 
   const main = (
