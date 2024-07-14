@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { useTranslation } from '../../hooks/common'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'

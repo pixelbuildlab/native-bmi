@@ -27,7 +27,7 @@ const AppLayout = ({ header, main, action }: AppLayoutProps) => {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 3,
+    flex: 4,
     alignSelf: 'stretch',
     justifyContent: 'flex-end',
     padding: 22,

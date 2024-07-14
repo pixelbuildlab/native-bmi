@@ -12,10 +12,11 @@ const translation: Translation = {
       inputError: 'Please fill the field',
       actionButton: 'Calculate',
     },
-    results: {
+    result: {
       heading: 'BMI Calculator',
       subHeading: 'Check below the BMI result and its Classification:',
       result1: 'Your Body Mass Index (BMI) is:',
+      actionButton: 'Recheck',
     },
   },
   es_US: {
