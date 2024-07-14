@@ -10,6 +10,7 @@ const translation: Translation = {
       placeholderWeight: 'Type your weight here (in Kilograms).',
       placeholderHeight: 'Type your Height here (in feet).',
       inputError: 'Please fill the field',
+      actionButton: 'Calculate',
     },
     results: {
       heading: 'BMI Calculator',
