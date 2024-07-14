@@ -9,7 +9,7 @@ function PressableButton({ title, onPress }: PressableButtonProps) {
       <Pressable
         style={styles.pressable}
         android_ripple={{
-          color: '#CBC3E3',
+          color: '#c10fe1',
           borderless: true,
         }}
         onPress={() => onPress && onPress()}
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   pressableText: {
     color: 'white',
     padding: 16,
+    fontSize: 15,
   },
 })

@@ -1,15 +1,16 @@
-// Main.js
 import React from 'react'
-import { StatusBar } from 'expo-status-bar'
-import { LinearGradient } from 'expo-linear-gradient'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { useTranslation } from '../../hooks/common'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
 import AppLayout from '../../AppLayout'
+import { TextInputField } from '../../sharedComponents'
+import { useBMIStore } from '../../store'
 
 export default function Onboarding() {
   const translatedText = useTranslation(SCREEN_LIST.ONBOARDING)
+  const setHeight = useBMIStore((store) => store.setHeight)
+  const setWeight = useBMIStore((store) => store.setWeight)
 
   const header = (
     <View>
@@ -20,13 +21,17 @@ export default function Onboarding() {
 
   const main = (
     <>
-      <TextInput
+      <TextInputField
         placeholder={translatedText.placeholderHeight}
-        style={styles.field}
+        nativeID='height'
+        keyboardType='numeric'
+        onChangeText={(value) => setHeight(Number(value))}
       />
-      <TextInput
+      <TextInputField
         placeholder={translatedText.placeholderWeight}
-        style={styles.field}
+        nativeID='weight'
+        keyboardType='numeric'
+        onChangeText={(value) => setWeight(Number(value))}
       />
     </>
   )
@@ -60,11 +65,5 @@ const styles = StyleSheet.create({
   subHeading: {
     fontSize: 16,
     color: 'white',
-  },
-  field: {
-    backgroundColor: '#eee',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 20,
   },
 })
