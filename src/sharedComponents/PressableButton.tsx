@@ -1,5 +1,11 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import {
+  Pressable,
+  PressableAndroidRippleConfig,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native'
 
 type PressableButtonProps = { onPress?: () => void; title: string }
 
@@ -8,16 +14,17 @@ function PressableButton({ title, onPress }: PressableButtonProps) {
     <View style={styles.container}>
       <Pressable
         style={styles.pressable}
-        android_ripple={{
-          color: '#c10fe1',
-          borderless: true,
-        }}
+        android_ripple={rippleConfig}
         onPress={() => onPress && onPress()}
       >
         <Text style={styles.pressableText}>{title}</Text>
       </Pressable>
     </View>
   )
+}
+const rippleConfig: PressableAndroidRippleConfig = {
+  color: '#c70fe1',
+  borderless: true,
 }
 
 export { PressableButton }
