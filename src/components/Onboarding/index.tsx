@@ -15,14 +15,12 @@ export default function Onboarding() {
   const isValidHeight = useBMIStore((store) => store.isHeightValid)
   const isWeightValid = useBMIStore((store) => store.isWeightValid)
   const setWeight = useBMIStore((store) => store.setWeight)
+  const setScreen = useBMIStore((store) => store.setScreen)
 
   const handleHeight = (value: string) => {
     setHeight(Number(value))
     if (!isValidHeight && height !== 0) {
-      ToastAndroid.show(
-        'Enter valid height in numbers, greater than 0',
-        ToastAndroid.SHORT
-      )
+      ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
     } else if (height === 0 && Number(value) < 1) {
       ToastAndroid.show(
         'Enter valid height in numbers, greater than 0',
@@ -33,18 +31,19 @@ export default function Onboarding() {
   const handleWight = (value: string) => {
     setWeight(Number(value))
     if (!isWeightValid && weight !== 0) {
-      ToastAndroid.show(
-        'Enter valid weight in numbers, greater than 0',
-        ToastAndroid.SHORT
-      )
+      ToastAndroid.show(translatedText.weightToast, ToastAndroid.SHORT)
     } else if (weight === 0 && Number(value) < 1) {
-      ToastAndroid.show(
-        'Enter valid weight in numbers, greater than 0',
-        ToastAndroid.SHORT
-      )
+      ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
     }
   }
   const disableButton = !isValidHeight || !isWeightValid || !weight || !height
+  const handleContinuePress = () => {
+    if (disableButton) {
+      ToastAndroid.show(translatedText.fieldToast, ToastAndroid.SHORT)
+      return
+    }
+    setScreen(SCREEN_LIST.RESULT)
+  }
   const header = (
     <View>
       <Text style={styles.heading}>{translatedText.heading}</Text>
@@ -55,16 +54,16 @@ export default function Onboarding() {
   const main = (
     <>
       <TextInputField
-        placeholder={translatedText.placeholderHeight}
-        nativeID='height'
-        keyboardType='numeric'
-        onChangeText={handleHeight}
-      />
-      <TextInputField
         placeholder={translatedText.placeholderWeight}
         nativeID='weight'
         keyboardType='numeric'
         onChangeText={handleWight}
+      />
+      <TextInputField
+        placeholder={translatedText.placeholderHeight}
+        nativeID='height'
+        keyboardType='numeric'
+        onChangeText={handleHeight}
       />
     </>
   )
@@ -74,6 +73,7 @@ export default function Onboarding() {
       title={translatedText.actionButton}
       pressableStyles={disableButton ? { backgroundColor: 'gray' } : {}}
       isDisable={disableButton}
+      onPress={handleContinuePress}
     />
   )
 

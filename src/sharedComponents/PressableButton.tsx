@@ -35,7 +35,7 @@ function PressableButton({
   )
 }
 const rippleConfig: PressableAndroidRippleConfig = {
-  color: '#c70fe1',
+  color: '#d66ae5',
   borderless: true,
 }
 
