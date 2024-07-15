@@ -13,7 +13,7 @@ const translation: Translation = {
       actionButton: 'Calculate',
       heightToast: 'Enter valid height in numbers, greater than 0',
       weightToast: 'Enter valid weight in numbers, greater than 0',
-      fieldToast: 'Fill fields to continue',
+      fieldToast: 'Fill fields correctly to continue',
     },
     result: {
       heading: 'BMI Calculator',
@@ -44,7 +44,7 @@ const translation: Translation = {
       actionButton: 'Calcular',
       heightToast: 'Ingrese una altura válida en números, mayor que 0',
       weightToast: 'Ingrese un peso válido en números, mayor que 0',
-      fieldToast: 'Complete los campos para continuar',
+      fieldToast: 'Complete los campos correctamente para continuar',
     },
     result: {
       heading: 'Calculadora de IMC',
@@ -76,7 +76,7 @@ const translation: Translation = {
       actionButton: 'Calcular',
       heightToast: 'Insira uma altura válida em números, maior que 0',
       weightToast: 'Insira um peso válido em números, maior que 0',
-      fieldToast: 'Preencha os campos para continuar',
+      fieldToast: 'Preencha os campos corretamente para continuar',
     },
     result: {
       heading: 'Calculadora de IMC',
@@ -107,7 +107,7 @@ const translation: Translation = {
       actionButton: 'Calculer',
       heightToast: 'Entrez une hauteur valide en chiffres, supérieure à 0',
       weightToast: 'Entrez un poids valide en chiffres, supérieur à 0',
-      fieldToast: 'Remplissez les champs pour continuer',
+      fieldToast: 'Remplissez correctement les champs pour continuer',
     },
     result: {
       heading: 'Calculatrice de BMI',
@@ -139,7 +139,7 @@ const translation: Translation = {
       actionButton: 'حساب لگائیں',
       heightToast: 'درست قد عدد میں درج کریں، 0 سے زیادہ',
       weightToast: 'درست وزن عدد میں درج کریں، 0 سے زیادہ',
-      fieldToast: 'جاری رکھنے کے لیے خانوں کو پُر کریں',
+      fieldToast: 'جاری رکھنے کے لیے خانوں کو درست طریقے سے پُر کریں',
     },
     result: {
       heading: 'BMI کیلکولیٹر',
