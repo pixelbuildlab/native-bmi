@@ -46,7 +46,6 @@ const bMIStoreSlice: StateCreator<BMIStoreSlice> = (set, get, store) => ({
 
     const bmiVal = parseFloat(((weight / height ** 2) * 703).toFixed(2))
     const bmi = `${bmiVal}`
-    console.log(bmiVal)
     if (bmiVal < 16.0) {
       return { index: bmi, status: 'UNDERWEIGHT_T1' }
     } else if (bmiVal >= 16.0 && bmiVal <= 16.99) {

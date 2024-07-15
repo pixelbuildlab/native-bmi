@@ -11,11 +11,9 @@ const useTranslation = (screen: string) => {
       const locale =
         NativeModules.SettingsManager.settings.AppleLocale ||
         NativeModules.SettingsManager.settings.AppleLanguages[0]
-      console.log(locale, 'ios')
       return translation[locale]
     } else if (Platform.OS === 'android') {
       const locale = NativeModules.I18nManager.localeIdentifier
-      console.log(locale, 'android')
       return translation[locale]
     } else return translation['en_US']
   }, [])
