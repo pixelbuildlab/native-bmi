@@ -1,6 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import SquareSVG from './sharedComponents/svg/Squre'
 type AppLayoutProps = {
   header: React.ReactNode
   main: React.ReactNode
@@ -16,7 +17,12 @@ const AppLayout = ({ header, main, action }: AppLayoutProps) => {
           end={[0, 1]}
           style={styles.header}
         >
-          {header}
+          <>
+            <View style={styles.logoContainer}>
+              <SquareSVG />
+            </View>
+            {header}
+          </>
         </LinearGradient>
         <View style={styles.main}>{main}</View>
         <View style={styles.action}>{action}</View>
@@ -39,6 +45,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logoContainer: {
+    justifyContent: 'flex-start',
+    marginTop: 24,
+    flex: 1,
   },
   content: {
     alignSelf: 'stretch',

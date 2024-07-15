@@ -2,19 +2,31 @@ import React from 'react'
 import {
   Pressable,
   PressableAndroidRippleConfig,
+  StyleProp,
   StyleSheet,
   Text,
   View,
+  ViewStyle,
 } from 'react-native'
 
-type PressableButtonProps = { onPress?: () => void; title: string }
+type PressableButtonProps = {
+  onPress?: () => void
+  title: string
+  pressableStyles?: StyleProp<any>
+  isDisable?: boolean
+}
 
-function PressableButton({ title, onPress }: PressableButtonProps) {
+function PressableButton({
+  title,
+  onPress,
+  pressableStyles = {},
+  isDisable,
+}: PressableButtonProps) {
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, ...pressableStyles }}>
       <Pressable
-        style={styles.pressable}
-        android_ripple={rippleConfig}
+        style={{ ...styles.pressable }}
+        android_ripple={isDisable ? null : rippleConfig}
         onPress={() => onPress && onPress()}
       >
         <Text style={styles.pressableText}>{title}</Text>

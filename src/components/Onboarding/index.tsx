@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, ToastAndroid, View } from 'react-native'
 import { useTranslation } from '../../hooks/common'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
@@ -10,8 +10,41 @@ import { useBMIStore } from '../../store'
 export default function Onboarding() {
   const translatedText = useTranslation(SCREEN_LIST.ONBOARDING)
   const setHeight = useBMIStore((store) => store.setHeight)
+  const height = useBMIStore((store) => store.height)
+  const weight = useBMIStore((store) => store.weight)
+  const isValidHeight = useBMIStore((store) => store.isHeightValid)
+  const isWeightValid = useBMIStore((store) => store.isWeightValid)
   const setWeight = useBMIStore((store) => store.setWeight)
 
+  const handleHeight = (value: string) => {
+    setHeight(Number(value))
+    if (!isValidHeight && height !== 0) {
+      ToastAndroid.show(
+        'Enter valid height in numbers, greater than 0',
+        ToastAndroid.SHORT
+      )
+    } else if (height === 0 && Number(value) < 1) {
+      ToastAndroid.show(
+        'Enter valid height in numbers, greater than 0',
+        ToastAndroid.SHORT
+      )
+    }
+  }
+  const handleWight = (value: string) => {
+    setWeight(Number(value))
+    if (!isWeightValid && weight !== 0) {
+      ToastAndroid.show(
+        'Enter valid weight in numbers, greater than 0',
+        ToastAndroid.SHORT
+      )
+    } else if (weight === 0 && Number(value) < 1) {
+      ToastAndroid.show(
+        'Enter valid weight in numbers, greater than 0',
+        ToastAndroid.SHORT
+      )
+    }
+  }
+  const disableButton = !isValidHeight || !isWeightValid || !weight || !height
   const header = (
     <View>
       <Text style={styles.heading}>{translatedText.heading}</Text>
@@ -25,18 +58,24 @@ export default function Onboarding() {
         placeholder={translatedText.placeholderHeight}
         nativeID='height'
         keyboardType='numeric'
-        onChangeText={(value) => setHeight(Number(value))}
+        onChangeText={handleHeight}
       />
       <TextInputField
         placeholder={translatedText.placeholderWeight}
         nativeID='weight'
         keyboardType='numeric'
-        onChangeText={(value) => setWeight(Number(value))}
+        onChangeText={handleWight}
       />
     </>
   )
 
-  const action = <PressableButton title={translatedText.actionButton} />
+  const action = (
+    <PressableButton
+      title={translatedText.actionButton}
+      pressableStyles={disableButton ? { backgroundColor: 'gray' } : {}}
+      isDisable={disableButton}
+    />
+  )
 
   return (
     <AppLayout
