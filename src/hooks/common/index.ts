@@ -2,9 +2,7 @@ import React from 'react'
 import { TranslatedText } from '../../types'
 import { NativeModules, Platform } from 'react-native'
 import { translation } from '../../utilities/translation'
-// type UseTranslationProps = {
-//   screen: string
-// }
+
 const useTranslation = (screen: string) => {
   const translatedText: TranslatedText = React.useMemo(() => {
     if (Platform.OS === 'ios') {
