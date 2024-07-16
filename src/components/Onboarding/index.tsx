@@ -1,11 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, ToastAndroid, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import Toast from 'react-native-root-toast'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
 import AppLayout from '../../AppLayout'
 import { TextInputField } from '../../sharedComponents'
 import { useBMIStore } from '../../store'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import type { OnboardingTranslation, RootStackParamList } from '../../types'
 import { useTranslation } from '../../hooks'
 
@@ -25,17 +26,17 @@ export default function Onboarding({ navigation }: OnboardingProps) {
   const handleHeight = (value: string) => {
     setHeight(Number(value))
     if (!isValidHeight && height !== 0) {
-      ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
+      Toast.show(translatedText.heightToast)
     } else if (height === 0 && Number(value) < 1) {
-      ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
+      Toast.show(translatedText.heightToast)
     }
   }
   const handleWight = (value: string) => {
     setWeight(Number(value))
     if (!isWeightValid && weight !== 0) {
-      ToastAndroid.show(translatedText.weightToast, ToastAndroid.SHORT)
+      Toast.show(translatedText.weightToast)
     } else if (weight === 0 && Number(value) < 1) {
-      ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
+      Toast.show(translatedText.weightToast)
     }
   }
 
@@ -43,7 +44,7 @@ export default function Onboarding({ navigation }: OnboardingProps) {
 
   const handleContinuePress = () => {
     if (disableButton) {
-      ToastAndroid.show(translatedText.fieldToast, ToastAndroid.SHORT)
+      Toast.show(translatedText.fieldToast)
       return
     }
     navigation.navigate(SCREEN_LIST.RESULT)
