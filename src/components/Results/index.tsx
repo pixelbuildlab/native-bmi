@@ -1,18 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useTranslation } from '../../hooks/common'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { CommonActions } from '@react-navigation/native'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
 import AppLayout from '../../AppLayout'
 import { useBMIStore } from '../../store'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import type { RootStackParamList } from '../../types'
-import { CommonActions } from '@react-navigation/native'
+import { useTranslation } from '../../hooks'
+import type { ResultTranslation, RootStackParamList } from '../../types'
 
 type ResultsProps = NativeStackScreenProps<RootStackParamList>
 
 export default function Results({ navigation }: ResultsProps) {
-  const translatedText = useTranslation(SCREEN_LIST.RESULT)
+  const translatedText = useTranslation<ResultTranslation>(SCREEN_LIST.RESULT)
   const resetStore = useBMIStore((store) => store.resetStore)
   const getBmiIndex = useBMIStore((store) => store.getBmiIndex)
 
@@ -42,7 +42,9 @@ export default function Results({ navigation }: ResultsProps) {
   const main = (
     <View style={styles.mainResult}>
       <Text style={styles.resultInfoText}>{translatedText.result1}</Text>
-      <Text style={styles.resultStatus}>{translatedText[status]}</Text>
+      <Text style={styles.resultStatus}>
+        {translatedText[status as keyof ResultTranslation]}
+      </Text>
     </View>
   )
 

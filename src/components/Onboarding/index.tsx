@@ -1,18 +1,20 @@
 import React from 'react'
 import { StyleSheet, Text, ToastAndroid, View } from 'react-native'
-import { useTranslation } from '../../hooks/common'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
 import AppLayout from '../../AppLayout'
 import { TextInputField } from '../../sharedComponents'
 import { useBMIStore } from '../../store'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import type { RootStackParamList } from '../../types'
+import type { OnboardingTranslation, RootStackParamList } from '../../types'
+import { useTranslation } from '../../hooks'
 
 type OnboardingProps = NativeStackScreenProps<RootStackParamList>
 
 export default function Onboarding({ navigation }: OnboardingProps) {
-  const translatedText = useTranslation(SCREEN_LIST.ONBOARDING)
+  const translatedText = useTranslation<OnboardingTranslation>(
+    SCREEN_LIST.ONBOARDING
+  )
   const setHeight = useBMIStore((store) => store.setHeight)
   const height = useBMIStore((store) => store.height)
   const weight = useBMIStore((store) => store.weight)
