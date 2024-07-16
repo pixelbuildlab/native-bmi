@@ -5,15 +5,21 @@ import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
 import AppLayout from '../../AppLayout'
 import { useBMIStore } from '../../store'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import type { RootStackParamList } from '../../types'
 
-export default function Results() {
+type ResultsProps = NativeStackScreenProps<RootStackParamList>
+
+export default function Results({ navigation }: ResultsProps) {
   const translatedText = useTranslation(SCREEN_LIST.RESULT)
   const resetStore = useBMIStore((store) => store.resetStore)
   const getBmiIndex = useBMIStore((store) => store.getBmiIndex)
 
   const handleResetPress = () => {
     resetStore()
+    navigation.navigate(SCREEN_LIST.ONBOARDING)
   }
+
   const index = getBmiIndex().index
   const status = getBmiIndex().status
 
