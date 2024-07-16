@@ -7,6 +7,7 @@ import AppLayout from '../../AppLayout'
 import { useBMIStore } from '../../store'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import type { RootStackParamList } from '../../types'
+import { CommonActions } from '@react-navigation/native'
 
 type ResultsProps = NativeStackScreenProps<RootStackParamList>
 
@@ -17,7 +18,12 @@ export default function Results({ navigation }: ResultsProps) {
 
   const handleResetPress = () => {
     resetStore()
-    navigation.navigate(SCREEN_LIST.ONBOARDING)
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: SCREEN_LIST.ONBOARDING }],
+      })
+    )
   }
 
   const index = getBmiIndex().index

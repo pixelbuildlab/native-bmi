@@ -33,9 +33,8 @@ const bMIStoreSlice: StateCreator<BMIStoreSlice> = (set, get, store) => ({
     }),
   setWeight: (weight) =>
     set((state) => {
-      if (weight && weight >= 1)
-        return { ...state, weight, isWeightValid: true }
-      else return { ...state, weight, isWeightValid: false }
+      if (weight >= 1) return { ...state, weight, isWeightValid: true }
+      else return { ...state, isWeightValid: false }
     }),
   setScreen: (screen) => set((state) => ({ ...state, screen })),
   getBmiIndex: () => {
@@ -60,7 +59,7 @@ const bMIStoreSlice: StateCreator<BMIStoreSlice> = (set, get, store) => ({
       return { index: bmi, status: 'OBESE' }
     }
   },
-  resetStore: () => set(() => ({ ...INITIAL_STORE_STATE })),
+  resetStore: () => set((state) => ({ ...state, ...INITIAL_STORE_STATE })),
 })
 
 export const useBMIStore = create<BMIStoreSlice>((set, get, store) => ({
