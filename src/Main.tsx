@@ -1,28 +1,28 @@
-import { StatusBar } from 'expo-status-bar'
-import { Text, View } from 'react-native'
 import Onboarding from './components/Onboarding'
-import { useBMIStore } from './store'
-import { SCREEN_LIST } from './constants'
 import Results from './components/Results'
-import { useTranslation } from './hooks/common'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native'
+import type { RootStackParamList } from './types'
+import { SCREEN_LIST } from './constants'
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function Main() {
-  const screen = useBMIStore((store) => store.screen)
-  const translation = useTranslation(SCREEN_LIST.WELCOME)
   return (
-    <View style={{ flex: 1 }}>
-      <StatusBar style='auto' />
-      {screen === SCREEN_LIST.ONBOARDING ? (
-        <Onboarding />
-      ) : screen === SCREEN_LIST.RESULT ? (
-        <Results />
-      ) : (
-        <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
-          <Text>{translation.relaunch}</Text>
-        </View>
-      )}
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName='onboarding'
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen
+          name={SCREEN_LIST.ONBOARDING}
+          component={Onboarding}
+        />
+        <Stack.Screen
+          name={SCREEN_LIST.RESULT}
+          component={Results}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }

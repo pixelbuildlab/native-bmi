@@ -1,13 +1,17 @@
 import React from 'react'
-import { Image, StyleSheet, Text, ToastAndroid, View } from 'react-native'
+import { StyleSheet, Text, ToastAndroid, View } from 'react-native'
 import { useTranslation } from '../../hooks/common'
 import { SCREEN_LIST } from '../../constants'
 import { PressableButton } from '../../sharedComponents'
 import AppLayout from '../../AppLayout'
 import { TextInputField } from '../../sharedComponents'
 import { useBMIStore } from '../../store'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import type { RootStackParamList } from '../../types'
 
-export default function Onboarding() {
+type OnboardingProps = NativeStackScreenProps<RootStackParamList>
+
+export default function Onboarding({ navigation }: OnboardingProps) {
   const translatedText = useTranslation(SCREEN_LIST.ONBOARDING)
   const setHeight = useBMIStore((store) => store.setHeight)
   const height = useBMIStore((store) => store.height)
@@ -15,17 +19,13 @@ export default function Onboarding() {
   const isValidHeight = useBMIStore((store) => store.isHeightValid)
   const isWeightValid = useBMIStore((store) => store.isWeightValid)
   const setWeight = useBMIStore((store) => store.setWeight)
-  const setScreen = useBMIStore((store) => store.setScreen)
 
   const handleHeight = (value: string) => {
     setHeight(Number(value))
     if (!isValidHeight && height !== 0) {
       ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
     } else if (height === 0 && Number(value) < 1) {
-      ToastAndroid.show(
-        'Enter valid height in numbers, greater than 0',
-        ToastAndroid.SHORT
-      )
+      ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
     }
   }
   const handleWight = (value: string) => {
@@ -36,13 +36,15 @@ export default function Onboarding() {
       ToastAndroid.show(translatedText.heightToast, ToastAndroid.SHORT)
     }
   }
+
   const disableButton = !isValidHeight || !isWeightValid || !weight || !height
+
   const handleContinuePress = () => {
     if (disableButton) {
       ToastAndroid.show(translatedText.fieldToast, ToastAndroid.SHORT)
       return
     }
-    setScreen(SCREEN_LIST.RESULT)
+    navigation.navigate(SCREEN_LIST.RESULT)
   }
   const header = (
     <View>
